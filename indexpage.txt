@@ -1,0 +1,57 @@
+leftsidebar:
+- home{}
+
+- receipts {
+    list of receipts:
+    - search receipt
+    - receipt no.
+    - receipt date
+    - customer name
+    - total
+    - view button{
+        receipt summary:
+        - business name
+        - customer name
+        - receipt no.
+        - date and time
+        - item qty, price and total
+        - dine in/ take out
+        - total
+        - amuount received(cash/card)
+        - change
+    }
+}
+
+backoffice{}
+
+center:
+- current date and time
+- list of categories
+- search product
+- product{
+    - product image
+    - product name
+    - price 
+}
+
+rightsidebar:
+- customer name
+- receipt no.
+- order type(dinein/ takeout)
+- items(can add qty)
+- add discoun options
+- total
+- place order{
+    - total amuount
+    - cash received
+    - total paid
+    - change
+    - confirm(cash/card)
+}
+- clear order 
+
+additional features:
+forgot password(send to email)
+track stocks on item selection
+admin pin before accessing backoffice
+
