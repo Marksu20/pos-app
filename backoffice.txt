@@ -1,0 +1,90 @@
+backoffice:
+account{
+    account details:
+    - business name
+    - email
+    - password
+    - pin
+    - edit button(change account details)
+}
+sales(dashboard){
+    all can sort by date and time
+    - total sales(can view in bar chart)
+    - total expenses(can view in bar chart)
+    - total income(can view in bar chart)
+    - recent orders(can view in bar chart)
+    - product best seller
+}
+receipts{
+    list of receipts:
+    - search receipt
+    - receipt no.
+    - receipt date
+    - customer name
+    - total
+    - view button{
+        receipt summary:
+        - business name
+        - customer name
+        - receipt no.
+        - date and time
+        - item qty, price and total
+        - dine in/ take out
+        - total
+        - amuount received(cash/card)
+        - change
+    }
+}
+discounts{
+    list of discounts:
+    - create a discount{
+        - discount name
+        - discount percentage
+    }
+    - search a discount
+    - discount name
+    - discount value(in percent%)
+    - edit button
+}
+products{
+    list of products:
+    - add product{
+        - name 
+        - category
+        - price
+        - image
+    }
+    - search product
+    - product image
+    - product name
+    - category
+    - price
+    - edit button
+}
+category{
+    - add category{
+        - category name
+        - description
+        - image
+    }
+    - search category
+    - category image
+    - category name
+    - description
+    - edit button
+}
+stocks{
+    - add item{
+        - item name
+        - category
+        - cost
+        - quantity
+    }
+    - search item
+    - item name
+    - category
+    - cost 
+    - quantity
+    - edit button
+}
+go back button{}

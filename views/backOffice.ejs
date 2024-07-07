@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back Office</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      /* background-color: #f8f9fa; */
+    }
+    .sidebar {
+      /* background-color: #343a40; */
+      min-width: 250px;
+      /* color: #fff; */
+    }
+    .sidebar .nav-link {
+      /* color: #adb5bd; */
+      margin: 0.5rem 0;
+    }
+    .sidebar .nav-link.active,
+    .sidebar .nav-link:hover {
+      /* color: #fff; */
+      /* background-color: #495057; */
+      border-radius: 0.25rem;
+    }
+    .sidebar .nav-item .nav-link .fa {
+      margin-right: 10px;
+    }
+    .sidebar .sidebar-header {
+      padding: 1rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+    /*hide pin*/
+    .numeric-password {
+      font-family: 'text-security-disc', sans-serif;
+      -webkit-text-security: disc;
+      text-security: disc;
+    }
+    .table-hover tbody tr:hover {
+            cursor: pointer;
+        }
+  </style>
+</head>
+<body>
+  <div class="sidebar d-flex flex-column p-3 shadow rounded">
+    <!--SIDEBAR-->
+    <div class="sidebar-header">Back Office</div>
+    <ul class="nav nav-pills flex-column">
+      <!--ACCOUNT-->
+      <li class="nav-item">
+        <button 
+        	class="nav-link active w-100" 
+					id="pills-account-tab" 
+					data-bs-toggle="pill" 
+					data-bs-target="#pills-account" 
+					type="button" 
+					role="tab" 
+					aria-controls="pills-account" 
+					aria-selected="true">
+					<i class="bi bi-person-circle"></i> 
+					Account
+				</button>
+      </li>
+      <!--SALES-->
+      <li class="nav-item">
+          <button 
+            class="nav-link w-100" 
+            id="pills-sale-tab" 
+            data-bs-toggle="pill" 
+            data-bs-target="#pills-sale" 
+            type="button" 
+            role="tab" 
+            aria-controls="pills-sale" 
+            aria-selected="true">
+            <i class="bi bi-bar-chart-line"></i> 
+            Sales
+          </button>
+      </li>
+      <!--RECEIPT-->
+      <li class="nav-item">
+        <button 
+          class="nav-link w-100" 
+          id="pills-receipt-tab" 
+          data-bs-toggle="pill" 
+          data-bs-target="#pills-receipt" 
+          type="button" 
+          role="tab" 
+          aria-controls="pills-receipt" 
+          aria-selected="true">
+          <i class="bi bi-receipt"></i> 
+          Receipts
+        </button>
+      </li>
+      <!--DISCOUNT-->
+      <li class="nav-item">
+        <button 
+        	class="nav-link w-100" 
+					id="pills-discount-tab" 
+					data-bs-toggle="pill" 
+					data-bs-target="#pills-discount" 
+					type="button" 
+					role="tab" 
+					aria-controls="pills-discount" 
+					aria-selected="true">
+					<i class="bi bi-tag"></i> 
+					Discounts   
+				</button>
+      </li>
+      <!--PRODUCT-->
+      <li class="nav-item">
+        <button 
+        	class="nav-link w-100" 
+					id="pills-products-tab" 
+					data-bs-toggle="pill" 
+					data-bs-target="#pills-products" 
+					type="button" 
+					role="tab" 
+					aria-controls="pills-products" 
+					aria-selected="true">
+					<i class="bi bi-bag"></i> 
+					Products
+				</button>
+      </li>
+      <!--CATEGORY-->
+			<li class="nav-item">
+        <button 
+        	class="nav-link w-100" 
+					id="pills-category-tab" 
+					data-bs-toggle="pill" 
+					data-bs-target="#pills-category" 
+					type="button" 
+					role="tab" 
+					aria-controls="pills-category" 
+					aria-selected="true">
+					<i class="bi bi-journal"></i> 
+					Categories
+				</button>
+      </li>
+      <!--STOCKS-->
+			<li class="nav-item">
+        <button 
+        	class="nav-link w-100" 
+					id="pills-stock-tab" 
+					data-bs-toggle="pill" 
+					data-bs-target="#pills-stock" 
+					type="button" 
+					role="tab" 
+					aria-controls="pills-stock" 
+					aria-selected="true">
+					<i class="bi bi-box2-heart"></i> 
+					Stocks   
+				</button>
+      </li>
+    </ul>
+    <div class="mt-auto ms-2">
+      <a href="/index">
+        <button class="btn btn-danger w-50 mb-3">
+          <i class="bi bi-box-arrow-left"></i> 	
+          Go back
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <!--BACK OFFICE-->
+  <div class="container-fluid p-4 tab-content" id="pillsCategory">
+    <!--ACCOUNT-->
+    <div class="tab-pane fade show active" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
+      <div class="container my-4 w-75">
+        <div class="card profile-card">
+          <!-- <img src="/img/steve.jpg" class="card-img-top" alt="Profile Picture"> -->
+          <div class="card-body">
+            <h3 class="card-title mb-4">Account Details</h3>
+              <div class="mb-3">
+                <label for="businessName" class="form-label">Business Name</label>
+                <input id="businessName" type="text" class="form-control"  value="SteveFox Cafe" disabled readonly>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" class="form-control"  value="stevefox@yahoo.com" disabled readonly>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" type="password" class="form-control"  value="123456" disabled readonly> 
+              </div>
+              <div class="mb-3">
+                <label for="pin" class="form-label">PIN</label>
+                <input id="pin" type="password" class="form-control"  value="1234" disabled readonly> 
+              </div>
+              <button id="js-edit" class="btn btn-primary w-25" data-bs-toggle="modal" data-bs-target="#accountModal">
+                  Edit
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--RECEIPTS-->
+    <div class="tab-pane fade w-75" id="pills-receipt" role="tabpanel" aria-labelledby="pills-discount-tab">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h2>Receipts</h2>
+			</div>
+			<form class="d-flex">
+					<input class="form-control me-2 w-25 mb-3" type="search" placeholder="Search..." aria-label="Search">
+					<button class="btn btn-outline-success mb-3" type="submit"><i class="bi bi-search"></i></button>
+			</form>
+			<table class="table table-hover rounded shadow">
+				<thead>
+					<tr>
+						<th scope="col">Receipt no.</th>
+						<th scope="col">Date</th>
+						<th scope="col">Customer</th>
+            <th scope="col">Total</th>
+            <th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0001</td>
+						<td>07/05/24</td>
+            <td>Kelly</td>
+						<td>₱100.00</td>
+            <td>
+              <button 
+                class="btn btn-outline-secondary" 
+                data-bs-toggle="modal" 
+                data-bs-target="#receiptSumModal"
+                >view</button>
+            </td>
+					</tr>
+					<tr>
+            <td>0002</td>
+						<td>07/05/24</td>
+						<td>Shai</td>
+            <td>₱500.00</td>
+            <td>
+              <button 
+                class="btn btn-outline-secondary" 
+                data-bs-toggle="modal" 
+                data-bs-target="#receiptSumModal"
+                >view</button>
+            </td>
+					</tr>
+					<!-- Repeat similar rows for other items -->
+				</tbody>
+			</table>
+		</div >
+
+    <!--PRODUCTS-->
+    <div class="tab-pane fade" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Products</h2>
+      <div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+          + Add Product
+        </button>
+      </div>
+    </div>
+    <form class="d-flex">
+        <input class="form-control me-2 w-25 mb-3" type="search" placeholder="Search some product" aria-label="Search">
+        <button class="btn btn-outline-success mb-3" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    <table class="table table-hover rounded shadow">
+      <thead>
+        <tr>
+          <th scope="col">Product Image</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>product.img</td>
+          <td>Broccoli</td>
+          <td>Vegetable</td>
+          <td>₱100.00</td>
+          <td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+        </tr>
+        <tr>
+          <td>product.img</td>
+          <td>Aubergine</td>
+          <td>Vegetable</td>
+          <td>₱500.00</td>
+
+          <td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+        </tr>
+        <!-- Repeat similar rows for other items -->
+      </tbody>
+    </table>
+    
+    </div >
+
+		<!--CATEGORIES-->
+		<div class="tab-pane fade" id="pills-category" role="tabpanel" aria-labelledby="pills-category-tab">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h2>Category</h2>
+				<div>
+					<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal">
+            + Add Category
+          </button>
+				</div>
+			</div>
+        <form class="d-flex">
+            <input class="form-control me-2 w-25 mb-3" type="search" placeholder="Search a category" aria-label="Search">
+            <button class="btn btn-outline-success mb-3" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      <div class="table-responsive row justify-content-center mt-1">
+			<table class="table table-hover w-75 rounded shadow">
+				<thead>
+					<tr>
+						<th scope="col">Category Image</th>
+						<th scope="col">Category Name</th>
+						<th scope="col">Description</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Veggie.img</td>
+						<td>Vegetable</td>
+						<td>This category contains vegtables</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<tr>
+						<td>Fruits.img</td>
+						<td>Fruits</td>
+						<td>this category contains Fruits</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<!-- Repeat similar rows for other items -->
+				</tbody>
+			</table>
+      </div>
+		</div >
+
+		<!--STOCKS-->
+    <div class="tab-pane fade" id="pills-stock" role="tabpanel" aria-labelledby="pills-stock-tab">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h2>Stocks</h2>
+				<div>
+					<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemModal">
+            + Add Item
+          </button>
+				</div>
+			</div>
+			<form class="d-flex">
+					<input class="form-control me-2 w-25 mb-3" type="search" placeholder="Search some item" aria-label="Search">
+					<button class="btn btn-outline-success mb-3" type="submit"><i class="bi bi-search"></i></button>
+			</form>
+			<table class="table table-hover rounded shadow">
+				<thead>
+					<tr>
+						<th scope="col">Item Name</th>
+						<th scope="col">Category</th>
+						<th scope="col">Cost</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Spoon</td>
+						<td>Utensils</td>
+						<td>₱50.00</td>
+						<td>10</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<tr>
+						<td>Fork</td>
+						<td>Utensils</td>
+						<td>₱50.00</td>
+						<td>8</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<!-- Repeat similar rows for other items -->
+				</tbody>
+			</table>
+		</div >
+
+    <!--DISCOUNTS-->
+    <div class="tab-pane fade w-75" id="pills-discount" role="tabpanel" aria-labelledby="pills-discount-tab">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h2>Discounts</h2>
+				<div>
+					<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#discountModal">
+            + Create Discount
+          </button>
+				</div>
+			</div>
+			<form class="d-flex">
+					<input class="form-control me-2 w-25 mb-3" type="search" placeholder="Search a discount" aria-label="Search">
+					<button class="btn btn-outline-success mb-3" type="submit"><i class="bi bi-search"></i></button>
+			</form>
+			<table class="table table-hover rounded shadow">
+				<thead>
+					<tr>
+						<th scope="col">Discount Name</th>
+						<th scope="col">Value</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Christmas</td>
+						<td>10%</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<tr>
+						<td>Valentines</td>
+						<td>4%</td>
+						<td><button class="btn btn-outline-secondary btn-sm">Edit</button></td>
+					</tr>
+					<!-- Repeat similar rows for other items -->
+				</tbody>
+			</table>
+		</div >
+  </div>
+
+  <!--EDIT ACCOUNT MODAL-->
+  <div class="modal fade" id="accountModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Change account details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit">
+            <input id="newName" type="text" class="form-control mb-3" placeholder="Business name">
+
+            <input id="newEmail" type="text" class="form-control mb-3" placeholder="Email">
+
+            <input id="newPassword" type="password" class="form-control mb-3" placeholder="New password">
+            <input id="confNewPass" type="password" class="form-control mb-3" placeholder="Confirm password" >
+
+            <input id="newPin" type="text" class="numeric-password form-control mb-3" maxlength="4" placeholder="New PIN">
+            <input id="confNewPin" type="pasword" class="form-control mb-3" placeholder="Confirm PIN">
+
+            <button type="submit" class="btn btn-success w-25">save</button>
+            <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal" aria-label="Close">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CREATE PRODUCTS MODAL-->
+  <div class="modal fade" id="productModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Create Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control mb-3" placeholder="Name" required>
+            
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="No Category">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item">No Category</button></li>
+                <li><button class="dropdown-item">Vegtables</button></li>
+                <li><button class="dropdown-item">Fruits</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button class="dropdown-item">+ Add Category</button></li>
+              </ul>
+            </div>
+
+            <input type="number" class="form-control mb-3" placeholder="Price" required>
+            
+            <label for="productImg" class="form-label">Upload product image</label>
+            <input type="file" class="form-control mb-4" id="productImg">
+
+            <button type="button" class="btn btn-success w-25">save</button>
+            <button type="button" class="btn btn-danger w-25">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CREATE CATEGORY MODAL-->
+  <div class="modal fade" id="categoryModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Create Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control mb-3" placeholder="Category name" required>
+            
+            <label for="categoryDescription" class="form=contorl">Category description</label>
+            <textarea id="categoryDescription" class="form-control mb-3" aria-label="With textarea"></textarea>
+            
+            <label for="productImg" class="form-label">Upload category image</label>
+            <input type="file" class="form-control mb-4" id="productImg">
+
+            <button type="button" class="btn btn-success w-25">save</button>
+            <button type="button" class="btn btn-danger w-25">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CREATE ITEM MODAL-->
+  <div class="modal fade" id="itemModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Create Item</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control mb-3" placeholder="Item name" required>
+
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="No Category">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item">No Category</button></li>
+                <li><button class="dropdown-item">Vegtables</button></li>
+                <li><button class="dropdown-item">Fruits</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button class="dropdown-item">+ Add Category</button></li>
+              </ul>
+            </div>
+
+            <input type="number" class="form-control mb-3" placeholder="Cost" required>
+
+            <input type="number" class="form-control mb-3" placeholder="Quantity" required>
+
+            <button type="button" class="btn btn-success w-25">save</button>
+            <button type="button" class="btn btn-danger w-25">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CREATE DISCOUNT MODAL-->
+  <div class="modal fade" id="discountModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Create Discount</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" class="form-control mb-3" placeholder="Discount name" required>
+
+            <input type="number" class="form-control mb-3" placeholder="Discount percentage %" required>
+
+            <button type="button" class="btn btn-success w-25">save</button>
+            <button type="button" class="btn btn-danger w-25">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--RECEIPT SUMMARY MODAL-->
+  <div class="modal fade" id="receiptSumModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-sm btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container my-1">
+            <div class="row mb-4">
+              <div class="col-12 text-center">
+                <h2>Cafe Tea'm</h2>
+              </div>
+            </div>
+        
+            <div class="row border-bottom">
+              <div class="col-6">
+                <h5>Bill To:</h5>
+                <p>Kelly</p>
+              </div>
+              <div class="col-6 text-end">
+                <h5>Receipt#: 0001</h5>
+                <p>7/6/24, 3:08AM</p>
+              </div>
+            </div>
+        
+            <div class="row mt-2">
+              <div class="col-12">
+                <p>Cookies (2) - 2 x 50 = ₱100.00 </p>
+                <p>Cookies (2) - 2 x 50 = ₱100.00 </p>
+                <p>Cookies (2) - 2 x 50 = ₱100.00 </p>
+              </div>
+            </div>
+                
+            <div class="row pt-2 border-bottom border-top">
+              <div class="col-6">
+                <strong>Dine in</strong>
+              </div>
+              <div class="col-6 text-end">
+                <p><strong>Total: </strong>₱100.00</p>
+                <p><strong>Cash: </strong>₱500.00</p>
+                <p><strong>Change: </strong>₱400.00</p>
+              </div>
+            </div>
+        
+            <div class="mt-3 row">
+              <div class="col-12 text-center">
+                <p>Thank you!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+  const edit = document.getElementById("js-edit");
+  edit.addEventListener('click', (event) => {
+    document.getElementById('newName').value = document.getElementById('businessName').value;
+    document.getElementById('newEmail').value = document.getElementById('email').value;
+    document.getElementById('newPassword').value = document.getElementById('password').value;
+    document.getElementById('newPin').value = document.getElementById('pin').value;
+  });
+  // HIDE PIN FUNCTION
+  const pinInput = document.getElementById('newPin');
+  pinInput.addEventListener('input', (event) => {
+    if (this.value) {
+        // Remove any non-numeric characters
+        this.value = this.value.replace(/\D/g, '');
+      }
+  });
+</script>
+</html>

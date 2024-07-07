@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+		<style>
+    .separator {
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">POS Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Inventory</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <!-- Sales Summary -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Sales Summary</h3>
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Total Sales</h5>
+                <p class="card-text" id="total-sales">$0.00</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Orders Today</h5>
+                <p class="card-text" id="orders-today">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Items Sold</h5>
+                <p class="card-text" id="items-sold">0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="separator"></div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Recent Orders</h3>
+        <ul class="list-group" id="recent-orders">
+          <!-- Recent orders will be appended here -->
+        </ul>
+        <div class="separator"></div>
+      </div>
+    </div>
+
+    <!-- Inventory Management -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Inventory Management</h3>
+        <table class="table table-striped" id="inventory-table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Inventory items will be appended here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Mock Data
+      const salesSummary = {
+        totalSales: 1500.00,
+        ordersToday: 10,
+        itemsSold: 25
+      };
+
+      const recentOrders = [
+        { id: 1, customer: 'John Doe', total: 45.00 },
+        { id: 2, customer: 'Jane Smith', total: 70.00 },
+        { id: 3, customer: 'Michael Brown', total: 25.00 }
+      ];
+
+      const inventory = [
+        { name: 'Product 1', price: 10.00, stock: 100 },
+        { name: 'Product 2', price: 20.00, stock: 50 },
+        { name: 'Product 3', price: 15.00, stock: 75 }
+      ];
+
+      // Populate Sales Summary
+      document.getElementById('total-sales').textContent = `$${salesSummary.totalSales.toFixed(2)}`;
+      document.getElementById('orders-today').textContent = salesSummary.ordersToday;
+      document.getElementById('items-sold').textContent = salesSummary.itemsSold;
+
+      // Populate Recent Orders
+      const recentOrdersContainer = document.getElementById('recent-orders');
+      recentOrders.forEach(order => {
+        const orderElement = document.createElement('li');
+        orderElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        orderElement.innerHTML = `
+          Order #${order.id} - ${order.customer}
+          <span class="badge bg-primary rounded-pill">$${order.total.toFixed(2)}</span>
+        `;
+        recentOrdersContainer.appendChild(orderElement);
+      });
+
+      // Populate Inventory Table
+      const inventoryTableBody = document.querySelector('#inventory-table tbody');
+      inventory.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>$${item.price.toFixed(2)}</td>
+          <td>${item.stock}</td>
+          <td>
+            <button class="btn btn-sm btn-primary">Edit</button>
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </td>
+        `;
+        inventoryTableBody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>

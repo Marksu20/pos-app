@@ -1,0 +1,35 @@
+<!--FORGOT PASWORD TEMPLATE-->
+<div class="modal fade" id="setPinModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header" >
+				<h4 class="modal-title text-center" style="margin: auto"
+				>Forgot Password</h4>
+				<button type="button" class="btn-sm btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			<div class="mb-3">
+				<form id="forgotPassword">
+					<label for="uEmail" class="lh-1 mb-3" style="font-size:14px;">a link will send to your email to reset your password.</label>
+					<input 
+						name="email" 
+						id="uEmail" 
+						type="email" 
+						class="form-control" 
+						placeholder="your_email@example.com"
+					>
+					<button 
+						type="submit" 
+						class="btn btn-sm btn-primary mt-4"
+					>Confirm</button>
+					<button 
+						type="submit" 
+						class="btn btn-sm btn-secondary mt-4" 
+						data-bs-dismiss="modal"
+					>Cancel</button>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
